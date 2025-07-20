@@ -56,7 +56,7 @@ async def proxy_m3u(request: Request):
                 line = replace_key_uri(line, headers_query)
             elif line and not line.startswith("#"):
                 full_url = urljoin(base_url, line)
-                line = f"/proxy/ts?url={quote(full_url)}&{headers_query}"
+                line = f"https://xttmchead.onrender.com/proxy/ts?url={quote(full_url)}&{headers_query}"
             modified_m3u8.append(line)
 
         return Response(content="\n".join(modified_m3u8), media_type="application/x-mpegURL")
