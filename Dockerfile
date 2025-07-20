@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY requirements.txt .
 COPY app.py .
+COPY keepalive.py .
 
-# pip ve tüm paketleri tek seferde yükle
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
