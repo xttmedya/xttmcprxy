@@ -3,8 +3,10 @@ from fastapi.responses import StreamingResponse
 import requests
 from urllib.parse import urlparse, urljoin, quote, unquote
 import re
+import keepalive  # bu dosya ile arka planda uygulamayı sıcak tut
 
 app = FastAPI()
+keepalive.keep_alive()  # Bu satır uygulamayı sıcak tutar
 
 def detect_m3u_type(content):
     if "#EXTM3U" in content and "#EXTINF" in content:
@@ -56,45 +58,14 @@ async def proxy_m3u(request: Request):
                 line = replace_key_uri(line, headers_query)
             elif line and not line.startswith("#"):
                 full_url = urljoin(base_url, line)
-                line = f"/proxy/ts?url={quote(full_url)}&{headers_query}"
+                line = unquote(f"https://xttmctv-bsgoal.hf.space/proxy/ts?url={quote(full_url)}&{headers_query}")
+                # line = line.replace('%3A',':')
             modified_m3u8.append(line)
 
         return Response(content="\n".join(modified_m3u8), media_type="application/x-mpegURL")
 
     except requests.RequestException as e:
         return Response(content=f"Indirme hatası: {str(e)}", status_code=500)
-
-@app.get("/proxy/ts")
-async def proxy_ts(request: Request):
-    ts_url = request.query_params.get('url', '').strip()
-    if not ts_url:
-        return Response(content="Hata: 'url' parametresi eksik", status_code=400)
-
-    headers = extract_headers_from_request(request)
-
-    try:
-        r = requests.get(ts_url, headers=headers, stream=True, timeout=(10, 30))
-        r.raise_for_status()
-
-        return StreamingResponse(r.iter_content(chunk_size=8192), media_type="video/mp2t")
-
-    except requests.RequestException as e:
-        return Response(content=f"Segment hatası: {str(e)}", status_code=500)
-
-@app.get("/proxy/key")
-async def proxy_key(request: Request):
-    key_url = request.query_params.get('url', '').strip()
-    if not key_url:
-        return Response(content="Hata: 'url' parametresi eksik", status_code=400)
-
-    headers = extract_headers_from_request(request)
-
-    try:
-        response = requests.get(key_url, headers=headers, timeout=(5, 15))
-        response.raise_for_status()
-        return Response(content=response.content, media_type="application/octet-stream")
-    except requests.RequestException as e:
-        return Response(content=f"Key hatası: {str(e)}", status_code=500)
 
 @app.get("/")
 async def index():
