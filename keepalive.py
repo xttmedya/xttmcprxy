@@ -6,7 +6,7 @@ def keep_alive():
     def ping():
         while True:
             try:
-                requests.get("https://your-render-service-name.onrender.com/")
+                requests.get("https://xttmchead.onrender.com/")
             except:
                 pass
             time.sleep(60)
