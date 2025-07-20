@@ -70,13 +70,16 @@ async def proxy_m3u(request: Request, url: str):
 @app.get("/proxy/ts")
 async def proxy_ts(request: Request, url: str):
     headers = extract_headers_from_request(request)
+
     try:
-        async with httpx.AsyncClient(timeout=30.0) as client:
-            r = await client.get(url, headers=headers, follow_redirects=True)
-            r.raise_for_status()
-            return Response(content=r.content, media_type="video/mp2t")
-    except httpx.RequestError as e:
-        return PlainTextResponse(f"Segment hatas\u0131: {str(e)}", status_code=500)
+        async with httpx.AsyncClient(timeout=30.0, follow_redirects=True) as client:
+            r = await client.get(url, headers=headers)
+            if r.status_code != 200:
+                return PlainTextResponse(f"#EXT-X-DISCONTINUITY\n#EXTINF:0,\n# Segment geçersiz: {r.status_code}", status_code=200)
+            return StreamingResponse(iter([r.content]), media_type="video/mp2t")
+    except Exception as e:
+        return PlainTextResponse(f"#EXT-X-DISCONTINUITY\n#EXTINF:0,\n# Segment hatası: {str(e)}", status_code=200)
+
 
 
 @app.get("/proxy/key")
