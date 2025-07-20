@@ -1,10 +1,7 @@
 services:
   - type: web
-    name: m3u8-proxy
-    runtime: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app -w 4 --worker-class gevent --worker-connections 100 -b 0.0.0.0:10000 --timeout 120 --keep-alive 5 --max-requests 1000 --max-requests-jitter 100
-    envVars:
-      - key: PYTHON_VERSION
-        value: 3.10
-
+    name: fastapi-proxy
+    env: python
+    buildCommand: ""
+    startCommand: uvicorn main:app --host 0.0.0.0 --port 10000
+    plan: free
