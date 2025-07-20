@@ -1,4 +1,5 @@
-fastapi
+flask
+requests
+gunicorn[gevent]
 uvicorn
 httpx
-requests

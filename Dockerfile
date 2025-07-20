@@ -1,10 +1,22 @@
 FROM python:3.10-slim
 
 WORKDIR /app
-COPY . .
 
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt .
+COPY app.py .
 
-EXPOSE 7860
+# pip ve tüm paketleri tek seferde yükle
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860"]
+EXPOSE 10000
+
+CMD ["gunicorn", "app:app", \
+     "-w", "4", \
+     "--worker-class", "gevent", \
+     "--worker-connections", "100", \
+     "-b", "0.0.0.0:10000", \
+     "--timeout", "120", \
+     "--keep-alive", "5", \
+     "--max-requests", "1000", \
+     "--max-requests-jitter", "100"]
