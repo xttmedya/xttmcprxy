@@ -71,7 +71,7 @@ def proxy_m3u8(request: Request, url: str | None = None):
         else:
             new_lines.append(line)
 
-    return Response(content="\n".join(new_lines), media_type="application/vnd.apple.mpegurl")
+    return Response(content="\n".join(new_lines), media_type="application/x-mpegURL")
 
 
 @app.get("/proxy/ts")
