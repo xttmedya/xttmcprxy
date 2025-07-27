@@ -1,0 +1,191 @@
+#!/bin/bash
+
+if [ "$1" = "stream1" ] ; then
+
+pid=`ps ax |grep vliptv01 | grep -v grep| awk '{ print $1 }'`
+echo "Killing $pid"
+kill -9 $pid
+/home/iptv/ligtv/stream1
+
+elif [ "$1" = "stream2" ] ; then
+
+
+pid=`ps ax |grep vliptv02 | grep -v grep| awk '{ print $1 }'`
+echo "Killing $pid"
+kill -9 $pid
+/home/iptv/ligtv/stream2
+
+elif [ "$1" = "stream3" ] ; then
+
+
+pid=`ps ax |grep vliptv03 | grep -v grep| awk '{ print $1 }'`
+echo "Killing $pid"
+kill -9 $pid
+/home/iptv/ligtv/stream3
+
+elif [ "$1" = "stream4" ] ; then
+
+
+pid=`ps ax |grep vliptv04 | grep -v grep| awk '{ print $1 }'`
+echo "Killing $pid"
+kill -9 $pid
+/home/iptv/ligtv/stream4
+
+elif [ "$1" = "stream5" ] ; then
+
+
+pid=`ps ax |grep vliptv05 | grep -v grep| awk '{ print $1 }'`
+echo "Killing $pid"
+kill -9 $pid
+/home/iptv/ligtv/stream5
+
+
+elif [ "$1" = "stream6" ] ; then
+
+
+pid=`ps ax |grep vliptv06 | grep -v grep| awk '{ print $1 }'`
+echo "Killing $pid"
+kill -9 $pid
+/home/iptv/ligtv/stream6
+
+
+elif [ "$1" = "stream7" ] ; then
+
+
+pid=`ps ax |grep vliptv07 | grep -v grep| awk '{ print $1 }'`
+echo "Killing $pid"
+kill -9 $pid
+/home/iptv/ligtv/stream7
+
+
+elif [ "$1" = "stream8" ] ; then
+
+
+pid=`ps ax |grep vliptv08 | grep -v grep| awk '{ print $1 }'`
+echo "Killing $pid"
+kill -9 $pid
+/home/iptv/ligtv/stream8
+
+
+elif [ "$1" = "stream9" ] ; then
+
+
+pid=`ps ax |grep vliptv09 | grep -v grep| awk '{ print $1 }'`
+echo "Killing $pid"
+kill -9 $pid
+/home/iptv/ligtv/stream9
+
+elif [ "$1" = "stream10" ] ; then
+
+
+pid=`ps ax |grep vliptv10 | grep -v grep| awk '{ print $1 }'`
+echo "Killing $pid"
+kill -9 $pid
+/home/iptv/ligtv/stream10
+
+elif [ "$1" = "stream11" ] ; then
+
+
+pid=`ps ax |grep vliptv11 | grep -v grep| awk '{ print $1 }'`
+echo "Killing $pid"
+kill -9 $pid
+/home/iptv/ligtv/stream11
+
+elif [ "$1" = "stream12" ] ; then
+
+
+pid=`ps ax |grep vliptv12 | grep -v grep| awk '{ print $1 }'`
+echo "Killing $pid"
+kill -9 $pid
+/home/iptv/ligtv/stream12
+
+elif [ "$1" = "stream13" ] ; then
+
+
+pid=`ps ax |grep vliptv13 | grep -v grep| awk '{ print $1 }'`
+echo "Killing $pid"
+kill -9 $pid
+/home/iptv/ligtv/stream13
+
+elif [ "$1" = "stream14" ] ; then
+
+
+pid=`ps ax |grep vliptv14 | grep -v grep| awk '{ print $1 }'`
+echo "Killing $pid"
+kill -9 $pid
+/home/iptv/ligtv/stream14
+
+
+elif [ "$1" = "stream15" ] ; then
+
+
+pid=`ps ax |grep vliptv15 | grep -v grep| awk '{ print $1 }'`
+echo "Killing $pid"
+kill -9 $pid
+/home/iptv/ligtv/stream15
+
+
+elif [ "$1" = "stream16" ] ; then
+
+
+pid=`ps ax |grep vliptv16 | grep -v grep| awk '{ print $1 }'`
+echo "Killing $pid"
+kill -9 $pid
+/home/iptv/ligtv/stream16
+
+
+elif [ "$1" = "stream17" ] ; then
+
+
+pid=`ps ax |grep vliptv17 | grep -v grep| awk '{ print $1 }'`
+echo "Killing $pid"
+kill -9 $pid
+/home/iptv/ligtv/stream17
+
+
+elif [ "$1" = "stream18" ] ; then
+
+
+pid=`ps ax |grep vliptv18 | grep -v grep| awk '{ print $1 }'`
+echo "Killing $pid"
+kill -9 $pid
+/home/iptv/ligtv/stream18
+
+
+elif [ "$1" = "stream19" ] ; then
+
+
+pid=`ps ax |grep vliptv19 | grep -v grep| awk '{ print $1 }'`
+echo "Killing $pid"
+kill -9 $pid
+/home/iptv/ligtv/stream19
+
+
+
+elif [ "$1" = "stream20" ] ; then
+
+
+pid=`ps ax |grep vliptv20 | grep -v grep| awk '{ print $1 }'`
+echo "Killing $pid"
+kill -9 $pid
+/home/iptv/ligtv/stream20
+
+
+elif [ "$1" = "stream" ] ; then
+
+pid=`ps ax |grep vliptv* | grep -v grep| awk '{ print $1 }'`
+echo "Killing $pid"
+kill -9 $pid
+/home/iptv/ligtv/stream
+
+
+
+
+
+
+else
+
+echo "Wrong Server ."
+
+fi
+
