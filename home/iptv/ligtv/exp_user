@@ -1,0 +1,4 @@
+#!/bin/bash
+#
+mysql -unejat -pnejat1122 iptvdb -e 'UPDATE users SET banned = 1 WHERE TO_DAYS(exp_date) < TO_DAYS(CURDATE());'
+

@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+server="`mysql -unejat -pnejat1122 iptvdb -e 'select stream_server from stream where id = 20;' | awk '{ printf "%s", $0 }' |awk ' { print substr($0,14) }' | awk '{print $1}'`"
+/usr/bin/vliptv20 -I dummy -vvv $server  --sout '#standard{access=http,mux=ts,dst=127.0.0.1:9019}' :http-user-agent=HADICANIM -R -d
+
+
+
+
+
+
+
